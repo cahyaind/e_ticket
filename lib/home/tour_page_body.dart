@@ -1,5 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_ticket/utils/colors.dart';
+import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/icon_and_text_widget.dart';
 import 'package:e_ticket/widgets/small_text.dart';
@@ -17,7 +18,8 @@ class _TourPageBodyState extends State<TourPageBody> {
   var _currPageValue = 0.0;
 
   double _scaleFactor = 0.8;
-  double _height = 220;
+  // double _height = 220;
+  double _height = Dimensions.pageViewContainer;
 
   // move left and right; zoom in zoom out
   // init state to initialize yg diperlukan things that your page should need
@@ -104,7 +106,8 @@ class _TourPageBodyState extends State<TourPageBody> {
         children: [
           // untuk image
           Container(
-            height: 220,
+            // height: 220,
+            height: Dimensions.pageViewContainer,
             margin: const EdgeInsets.only(left: 10, right: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
@@ -119,7 +122,8 @@ class _TourPageBodyState extends State<TourPageBody> {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 120,
+              // height: 120,
+              height: Dimensions.pageViewTextContainer,
               margin: const EdgeInsets.only(left: 25, right: 25, bottom: 30),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
@@ -166,6 +170,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                     ),
                     const SizedBox(height: 20),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconAndTextWidget(
                           icon: Icons.circle_sharp,
