@@ -20,6 +20,7 @@ class _MainTourPageState extends State<MainTourPage> {
     return Scaffold(
       body: Column(
         children: [
+          // the header
           Container(
             child: Container(
               margin: EdgeInsets.only(top: 45, bottom: 15),
@@ -56,6 +57,7 @@ class _MainTourPageState extends State<MainTourPage> {
               ),
             ),
           ),
+          // the body (top image)
           TourPageBody(),
         ],
       ),

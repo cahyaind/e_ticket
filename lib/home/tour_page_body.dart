@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/icon_and_text_widget.dart';
@@ -39,42 +40,62 @@ class _TourPageBodyState extends State<TourPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 320,
-      child: PageView.builder(
-        controller: pageController,
-        itemCount: 5,
-        itemBuilder: (context, position) {
-          return _buildPageItem(position);
-        },
-      ),
+    return Column(
+      children: [
+        Container(
+          height: 320,
+          child: PageView.builder(
+            controller: pageController,
+            itemCount: 5,
+            itemBuilder: (context, position) {
+              return _buildPageItem(position);
+            },
+          ),
+        ),
+        DotsIndicator(
+          dotsCount: 5,
+          position: _currPageValue,
+          decorator: DotsDecorator(
+            activeColor: AppColors.mainColor,
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
   Widget _buildPageItem(int index) {
-
     Matrix4 matrix = new Matrix4.identity();
-    if (index == _currPageValue.floor()) 
-    {  // left
-      var currScale = 1-(_currPageValue-index)*(1-_scaleFactor);
-      var currTrans = _height*(1-currScale)/2;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
-    } else if (index == _currPageValue.floor()+1) 
-    { // right
-      var currScale = _scaleFactor+(_currPageValue-index+1)*(1-_scaleFactor);
-      var currTrans = _height*(1-currScale)/2;  // 1/10*220=22
+    if (index == _currPageValue.floor()) {
+      // left
+      var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
+      var currTrans = _height * (1 - currScale) / 2;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, currTrans, 0);
+    } else if (index == _currPageValue.floor() + 1) {
+      // right
+      var currScale =
+          _scaleFactor + (_currPageValue - index + 1) * (1 - _scaleFactor);
+      var currTrans = _height * (1 - currScale) / 2; // 1/10*220=22
       matrix = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
-    } else if (index == _currPageValue.floor()-1) 
-    { // left
-      var currScale = 1-(_currPageValue-index)*(1-_scaleFactor);
-      var currTrans = _height*(1-currScale)/2;  
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, currTrans, 0);
+    } else if (index == _currPageValue.floor() - 1) {
+      // left
+      var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
+      var currTrans = _height * (1 - currScale) / 2;
       matrix = Matrix4.diagonal3Values(1, currScale, 1);
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, currTrans, 0);
-    } else 
-    { // agar saat scrolling left/right auto kecil height-nya
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, currTrans, 0);
+    } else {
+      // agar saat scrolling left/right auto kecil height-nya
       var currScale = 0.8;
-      matrix = Matrix4.diagonal3Values(1, currScale, 1)..setTranslationRaw(0, _height*(1-_scaleFactor), 1);
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, _height * (1 - _scaleFactor), 1);
     }
 
     return Transform(
@@ -105,10 +126,10 @@ class _TourPageBodyState extends State<TourPageBody> {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xff383838),
-                    blurRadius: 5.0,
-                    offset: Offset(0, 4) // x , y axis 5 pixel
-                  ),
+                      color: Color(0xff383838),
+                      blurRadius: 5.0,
+                      offset: Offset(0, 4) // x , y axis 5 pixel
+                      ),
                   BoxShadow(
                     color: Colors.white,
                     offset: Offset(-5, 0),
