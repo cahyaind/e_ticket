@@ -1,3 +1,4 @@
+import 'package:e_ticket/utils/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -27,7 +28,7 @@ class BigText extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Poppins',
         color: color,
-        fontSize: size,
+        fontSize: Dimensions.font20,
         fontWeight: FontWeight.w400,
       ),
     );
