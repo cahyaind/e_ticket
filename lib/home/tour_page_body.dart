@@ -45,7 +45,7 @@ class _TourPageBodyState extends State<TourPageBody> {
     return Column(
       children: [
         Container(
-          height: 320,
+          height: Dimensions.pageView,
           child: PageView.builder(
             controller: pageController,
             itemCount: 5,
@@ -150,7 +150,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BigText(text: "Bukit Mercury"),
-                    const SizedBox(height: 10),
+                    SizedBox(height: Dimensions.height10),
                     Row(
                       children: [
                         Wrap(
@@ -168,7 +168,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                         SmallText(text: "Comments"),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: Dimensions.height20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
