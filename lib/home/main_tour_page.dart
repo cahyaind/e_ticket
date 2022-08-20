@@ -1,3 +1,7 @@
+import 'package:e_ticket/home/tour_page_body.dart';
+import 'package:e_ticket/utils/colors.dart';
+import 'package:e_ticket/widgets/big_text.dart';
+import 'package:e_ticket/widgets/small_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -25,23 +29,34 @@ class _MainTourPageState extends State<MainTourPage> {
                 children: [
                   Column(
                     children: [
-                      Text('Country'),
-                      Text('City'),
+                      BigText(text: "Indonesia", color: AppColors.mainColor),
+                      Row(
+                        children: [
+                          SmallText(text: "Bandung", color: Colors.black54),
+                          Icon(Icons.arrow_drop_down_rounded)
+                        ],
+                      ),
                     ],
                   ),
-                  Container(
-                    width: 45,
-                    height: 45,
-                    child: Icon(Icons.search, color: Colors.white,),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.blue,
+                  Center(
+                    child: Container(
+                      width: 45,
+                      height: 45,
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: AppColors.mainColor, //ClassName.memberName
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
+          TourPageBody(),
         ],
       ),
     );
