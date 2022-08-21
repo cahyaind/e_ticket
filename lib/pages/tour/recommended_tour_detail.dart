@@ -73,8 +73,8 @@ class RecommendedTourDetail extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.only(
-              left: Dimensions.width20*2.5,
-              right: Dimensions.width20*2.5,
+              left: Dimensions.width20 * 2.5,
+              right: Dimensions.width20 * 2.5,
               top: Dimensions.height10,
               bottom: Dimensions.height10,
             ),
@@ -87,7 +87,11 @@ class RecommendedTourDetail extends StatelessWidget {
                   backgroundColor: AppColors.mainColor,
                   iconColor: Colors.white,
                 ),
-                BigText(text: "\Rp17.99 " + " X " + " 0", color: AppColors.mainBlackColor, size: Dimensions.font26,),
+                BigText(
+                  text: "\Rp17.99 " + " X " + " 0",
+                  color: AppColors.mainBlackColor,
+                  size: Dimensions.font26,
+                ),
                 AppIcon(
                   iconSize: Dimensions.iconSize24,
                   icon: Icons.add,
@@ -96,7 +100,59 @@ class RecommendedTourDetail extends StatelessWidget {
                 )
               ],
             ),
-          )
+          ),
+          Container(
+            // height: 120,
+            height: Dimensions.bottomHeightBar,
+            padding: EdgeInsets.only(
+              top: Dimensions.height30,
+              bottom: Dimensions.width30,
+              left: Dimensions.width20,
+              right: Dimensions.width20,
+            ),
+            decoration: BoxDecoration(
+                color: AppColors.buttonBackgroundColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Dimensions.radius20 * 2),
+                  topRight: Radius.circular(Dimensions.radius20 * 2),
+                )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // button sebelah kiri
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height10,
+                      bottom: Dimensions.height10,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white,
+                  ),
+                  child: Icon(
+                    Icons.favorite,
+                    color: AppColors.mainColor,
+                  ),
+                ),
+
+                // button sebelah kanan
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height10,
+                      bottom: Dimensions.height10,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20),
+                  child:
+                      BigText(text: "\$10 | Add to cart", color: Colors.white),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
