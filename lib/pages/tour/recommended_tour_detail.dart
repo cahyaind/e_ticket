@@ -87,6 +87,7 @@ class RecommendedTourDetail extends StatelessWidget {
                   backgroundColor: AppColors.mainColor,
                   iconColor: Colors.white,
                 ),
+                BigText(text: "\Rp17.99 " + " X " + " 0", color: AppColors.mainBlackColor, size: Dimensions.font26,),
                 AppIcon(
                   iconSize: Dimensions.iconSize24,
                   icon: Icons.add,
