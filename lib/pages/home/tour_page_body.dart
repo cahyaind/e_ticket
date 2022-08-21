@@ -113,7 +113,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: Colors.white38,
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         fit: BoxFit.cover,
                         image: AssetImage('assets/image/tour0.jpg'),
                       ),
