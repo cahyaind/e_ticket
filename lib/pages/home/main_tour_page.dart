@@ -1,5 +1,6 @@
-import 'package:e_ticket/home/tour_page_body.dart';
+import 'package:e_ticket/pages/home/tour_page_body.dart';
 import 'package:e_ticket/utils/colors.dart';
+import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/small_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,15 +18,17 @@ class MainTourPage extends StatefulWidget {
 class _MainTourPageState extends State<MainTourPage> {
   @override
   Widget build(BuildContext context) {
-    print("current height is "+MediaQuery.of(context).size.height.toString());
+    // print("current height is "+MediaQuery.of(context).size.height.toString());
     return Scaffold(
       body: Column(
         children: [
           // the header
           Container(
             child: Container(
-              margin: EdgeInsets.only(top: 45, bottom: 15),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: EdgeInsets.only(
+                  top: Dimensions.height45, bottom: Dimensions.height15),
+              padding: EdgeInsets.only(
+                  left: Dimensions.width20, right: Dimensions.width20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -42,16 +45,15 @@ class _MainTourPageState extends State<MainTourPage> {
                   ),
                   Center(
                     child: Container(
-                      width: 45,
-                      height: 45,
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
+                      width: Dimensions.height45,
+                      height: Dimensions.height45,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius:
+                            BorderRadius.circular(Dimensions.radius15),
                         color: AppColors.mainColor, //ClassName.memberName
                       ),
+                      child: Icon(Icons.search,
+                          color: Colors.white, size: Dimensions.iconSize24),
                     ),
                   ),
                 ],
@@ -59,7 +61,11 @@ class _MainTourPageState extends State<MainTourPage> {
             ),
           ),
           // the body (top image)
-          TourPageBody(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: TourPageBody(),
+            ),
+          ),
         ],
       ),
     );

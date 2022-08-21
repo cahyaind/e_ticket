@@ -44,6 +44,7 @@ class _TourPageBodyState extends State<TourPageBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // section for slider image n desc
         Container(
           height: Dimensions.pageView,
           child: PageView.builder(
@@ -54,6 +55,8 @@ class _TourPageBodyState extends State<TourPageBody> {
             },
           ),
         ),
+
+        // dotsIndicator
         DotsIndicator(
           dotsCount: 5,
           position: _currPageValue,
@@ -65,6 +68,110 @@ class _TourPageBodyState extends State<TourPageBody> {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
+        ),
+
+        // title Popular text
+        SizedBox(height: Dimensions.height30),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              BigText(text: "Popular"),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 3),
+                child: BigText(text: ".", color: Colors.black26),
+              ),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                margin: const EdgeInsets.only(bottom: 2),
+                child: SmallText(text: "Wisata di Majalengka"),
+              ),
+            ],
+          ),
+        ),
+
+        // list of tour n images
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                  left: Dimensions.width20,
+                  right: Dimensions.width20,
+                  bottom: Dimensions.height10),
+              child: Row(
+                children: [
+                  // image section in popular
+                  Container(
+                    width: Dimensions.listViewImgSize,
+                    height: Dimensions.listViewImgSize,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: Colors.white38,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/image/tour0.jpg'),
+                      ),
+                    ),
+                  ),
+
+                  // for text container
+                  Expanded(
+                    child: Container(
+                      height: Dimensions.listViewTextContSize,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(Dimensions.radius20),
+                          bottomRight: Radius.circular(Dimensions.radius20),
+                        ),
+                        color: Colors.white,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: Dimensions.width10,
+                            right: Dimensions.width10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            BigText(text: "Air Terjun Pelangi"),
+                            SizedBox(height: Dimensions.height10),
+                            SmallText(
+                                text: "Wisata yang ada di kaki gunung Ciremai"),
+                            SizedBox(height: Dimensions.height10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                IconAndTextWidget(
+                                  icon: Icons.circle_sharp,
+                                  text: "Normal",
+                                  iconColor: AppColors.iconColor1,
+                                ),
+                                IconAndTextWidget(
+                                  icon: Icons.location_on,
+                                  text: "2.7km",
+                                  iconColor: AppColors.mainColor,
+                                ),
+                                IconAndTextWidget(
+                                  icon: Icons.access_time_rounded,
+                                  text: "40min",
+                                  iconColor: AppColors.iconColor2,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ],
     );
@@ -108,9 +215,10 @@ class _TourPageBodyState extends State<TourPageBody> {
           Container(
             // height: 220,
             height: Dimensions.pageViewContainer,
-            margin: const EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(
+                left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(Dimensions.radius30),
               color: index.isEven ? Color(0xff69c5df) : Color(0xff9294cc),
               image: const DecorationImage(
                 fit: BoxFit.cover,
@@ -124,9 +232,12 @@ class _TourPageBodyState extends State<TourPageBody> {
             child: Container(
               // height: 120,
               height: Dimensions.pageViewTextContainer,
-              margin: const EdgeInsets.only(left: 25, right: 25, bottom: 30),
+              margin: EdgeInsets.only(
+                  left: Dimensions.width30,
+                  right: Dimensions.width30,
+                  bottom: Dimensions.height30),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
@@ -145,7 +256,11 @@ class _TourPageBodyState extends State<TourPageBody> {
                 ],
               ),
               child: Container(
-                padding: EdgeInsets.only(top: Dimensions.height15, left: 15, right: 15),
+                padding: EdgeInsets.only(
+                  top: Dimensions.height15,
+                  left: 15,
+                  right: 15,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
