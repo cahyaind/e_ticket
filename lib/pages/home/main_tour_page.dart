@@ -3,10 +3,7 @@ import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/small_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class MainTourPage extends StatefulWidget {
   const MainTourPage({Key? key}) : super(key: key);

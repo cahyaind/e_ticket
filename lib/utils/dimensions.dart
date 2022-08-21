@@ -25,7 +25,9 @@ class Dimensions {
   static double width30 = screenHeight/28.13;
 
   // fontSize dynamic
+  static double font16 = screenHeight/52.75;
   static double font20 = screenHeight/42.2;
+  static double font26 = screenHeight/32.46;
 
   // border radius
   static double radius15 = screenHeight/56.27;
@@ -33,9 +35,16 @@ class Dimensions {
   static double radius30 = screenHeight/28.13;
 
   // iconSize dynamic
+  static double iconSize16 = screenHeight/52.75;
   static double iconSize24 = screenHeight/35.17;
 
   // listViewSize
   static double listViewImgSize = screenWidth/3.25; // 390
   static double listViewTextContSize = screenWidth/3.9;
+
+  // FOR POPULAR TOUR
+  static double popularTourImgSize = screenHeight/2.41;
+
+  // ketinggian bar bawah
+  static double bottomHeightBar = screenHeight/7.03;
 }
