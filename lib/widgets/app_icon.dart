@@ -8,6 +8,7 @@ class AppIcon extends StatelessWidget {
   final Color backgroundColor;
   final Color iconColor;
   final double size;
+  final double iconSize;
 
   // parameter pada fungsi adalah nilai yang wajib di isi saat sebuah fungsi dipanggil
   const AppIcon({
@@ -16,6 +17,7 @@ class AppIcon extends StatelessWidget {
     this.backgroundColor = const Color(0xffFCF4E4),
     this.iconColor = const Color(0xff756D54),
     this.size = 40,
+    this.iconSize = 16,
   }) : super(key: key);
 
   @override
@@ -30,7 +32,8 @@ class AppIcon extends StatelessWidget {
       child: Icon(
         icon,
         color: iconColor,
-        size: Dimensions.iconSize16,
+        // size: Dimensions.iconSize16,
+        size: iconSize,
       ),
     );
   }
