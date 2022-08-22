@@ -109,7 +109,7 @@ class _TourPageBodyState extends State<TourPageBody> {
           ),
         ),
 
-        // LIST OF TOUR N IMAGES
+        // LIST OF TOUR N IMAGES IN RECOMMENDED
         GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
           return recommendedProduct.isLoaded
               ? ListView.builder(
@@ -119,7 +119,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedTour());
+                        Get.toNamed(RouteHelper.getRecommendedTour(index));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -255,7 +255,6 @@ class _TourPageBodyState extends State<TourPageBody> {
           // untuk image
           GestureDetector(
             onTap: () {
-
               Get.toNamed(RouteHelper.getPopularTour(index));
             },
             child: Container(
@@ -265,7 +264,8 @@ class _TourPageBodyState extends State<TourPageBody> {
                   left: Dimensions.width10, right: Dimensions.width10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
-                color: index.isEven ? const Color(0xff69c5df) : Color(0xff9294cc),
+                color:
+                    index.isEven ? const Color(0xff69c5df) : Color(0xff9294cc),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(

@@ -11,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PopularTourDetail extends StatelessWidget {
-  int pageId;
-  PopularTourDetail({Key? key, required this.pageId}) : super(key: key);
+  final int pageId;
+  const PopularTourDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -143,11 +143,11 @@ class PopularTourDetail extends StatelessWidget {
                   bottom: Dimensions.height10,
                   left: Dimensions.width20,
                   right: Dimensions.width20),
-              child: BigText(text: "\Rp${product.price!} | Add to cart", color: Colors.white),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,
               ),
+              child: BigText(text: "\Rp${product.price!} | Add to cart", color: Colors.white),
             ),
           ],
         ),

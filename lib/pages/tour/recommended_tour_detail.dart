@@ -1,4 +1,6 @@
+import 'package:e_ticket/controllers/recommended_product_controller.dart';
 import 'package:e_ticket/routes/route_helper.dart';
+import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/app_icon.dart';
@@ -8,10 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RecommendedTourDetail extends StatelessWidget {
-  const RecommendedTourDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const RecommendedTourDetail({Key? key, required this.pageId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -26,13 +32,13 @@ class RecommendedTourDetail extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(RouteHelper.getInitial());
                   },
-                  child: AppIcon(icon: Icons.clear),
+                  child: const AppIcon(icon: Icons.clear),
                 ),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+                const AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
             bottom: PreferredSize(
-              preferredSize: Size.fromHeight(20),
+              preferredSize: const Size.fromHeight(20),
               child: Container(
                 width: double.maxFinite,
                 padding: const EdgeInsets.only(top: 5, bottom: 10),
@@ -46,15 +52,15 @@ class RecommendedTourDetail extends StatelessWidget {
                 child: Center(
                     child: BigText(
                         size: Dimensions.font26,
-                        text: "Bukit Mercury Sayang Kaak")),
+                        text: product.name!)),
               ),
             ),
             pinned: true,
             backgroundColor: AppColors.greenColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/image/tour0.jpg",
+              background: Image.network(
+                AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!,
                 width: double.maxFinite,
                 fit: BoxFit.cover,
               ),
@@ -66,11 +72,8 @@ class RecommendedTourDetail extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                       left: Dimensions.width20, right: Dimensions.width20),
-                  child: const ExpandableTextWidget(
-                    text:
-                        "Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka. Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka. Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka. Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka. Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka. Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka. Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak. Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka.",
+                  child: ExpandableTextWidget(text: product.description!),
                   ),
-                ),
               ],
             ),
           ),
@@ -96,7 +99,7 @@ class RecommendedTourDetail extends StatelessWidget {
                   iconColor: Colors.white,
                 ),
                 BigText(
-                  text: "\Rp17.99 " + " X " + " 0",
+                  text: "\Rp${product.price!} X 0",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),

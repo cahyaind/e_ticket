@@ -10,10 +10,10 @@ class RouteHelper {
 
   static String getInitial() => '$initial';
   static String getPopularTour(int pageId) => '$popularTour?pageId=$pageId';
-  static String getRecommendedTour() => '$recommendedTour';
+  static String getRecommendedTour(int pageId) => '$recommendedTour?pageId=$pageId';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => MainTourPage()),
+    GetPage(name: initial, page: () => const MainTourPage()),
 
     // FOR POPULAR TOUR
     GetPage(name: popularTour, page: () {
@@ -26,7 +26,8 @@ class RouteHelper {
 
     // FOR RECOMMENDED TOUR
     GetPage(name: recommendedTour, page: () {
-      return RecommendedTourDetail();
+      var pageId = Get.parameters['pageId'];
+      return RecommendedTourDetail(pageId: int.parse(pageId!),);
     },
       transition: Transition.fadeIn
     ),
