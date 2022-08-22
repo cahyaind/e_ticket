@@ -1,3 +1,4 @@
+import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/app_column.dart';
@@ -5,6 +6,7 @@ import 'package:e_ticket/widgets/app_icon.dart';
 import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/exandable_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PopularTourDetail extends StatelessWidget {
   const PopularTourDetail({Key? key}) : super(key: key);
@@ -38,7 +40,12 @@ class PopularTourDetail extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(icon: Icons.arrow_back_ios),
+                GestureDetector(
+                  onTap: () {
+                    Get.to(()=>MainTourPage());
+                  },
+                  child: AppIcon(icon: Icons.arrow_back_ios),
+                ),
                 AppIcon(icon: Icons.shopping_cart_outlined)
               ],
             ),

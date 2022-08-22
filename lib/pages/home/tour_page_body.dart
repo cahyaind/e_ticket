@@ -2,6 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
 import 'package:e_ticket/models/products_model.dart';
+import 'package:e_ticket/pages/tour/popular_tour_detail.dart';
+import 'package:e_ticket/routes/route_helper.dart';
 import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
@@ -55,13 +57,18 @@ class _TourPageBodyState extends State<TourPageBody> {
           return popularProducts.isLoaded
               ? Container(
                   height: Dimensions.pageView,
-                  child: PageView.builder(
-                      controller: pageController,
-                      itemCount: popularProducts.popularProductList.length,
-                      itemBuilder: (context, position) {
-                        return _buildPageItem(position,
-                            popularProducts.popularProductList[position]);
-                      }),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(RouteHelper.getPopularTour());
+                    },
+                    child: PageView.builder(
+                        controller: pageController,
+                        itemCount: popularProducts.popularProductList.length,
+                        itemBuilder: (context, position) {
+                          return _buildPageItem(position,
+                              popularProducts.popularProductList[position]);
+                        }),
+                  ),
                 )
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
@@ -123,7 +130,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                           bottom: Dimensions.height10),
                       child: Row(
                         children: [
-                          // image section in popular
+                          // image section in recomendation
                           Container(
                             width: Dimensions.listViewImgSize,
                             height: Dimensions.listViewImgSize,
