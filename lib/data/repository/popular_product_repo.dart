@@ -1,4 +1,5 @@
 import 'package:e_ticket/data/api/api_client.dart';
+import 'package:e_ticket/utils/app_constants.dart';
 import 'package:get/get.dart';
 
 class PopularProductRepo extends GetxService {
@@ -8,7 +9,7 @@ class PopularProductRepo extends GetxService {
   PopularProductRepo({required this.apiClient});
 
   Future<Response> getPopularProductList() async {
-    return await apiClient.getData("http://mvs.bslmeiyu.com/api/v1/products/popular"); // end point url
+    return await apiClient.getData(AppConstants.POPULAR_PRODUCT_URI); // end point url
   }
 
 }

@@ -3,9 +3,13 @@ class Object {
   int? _typeId;
   int? _offset;
   late List<ObjectModel>? _objects;
-  List<ObjectModel>? get objects=>_objects;
+  List<ObjectModel>? get objects => _objects;
 
-  Object({required totalSize, required typeId, required offset, required objects}) {
+  Object(
+      {required totalSize,
+      required typeId,
+      required offset,
+      required objects}) {
     this._totalSize = totalSize;
     this._typeId = typeId;
     this._offset = offset;
@@ -23,8 +27,6 @@ class Object {
       });
     }
   }
-
-  
 }
 
 class ObjectModel {
@@ -63,6 +65,4 @@ class ObjectModel {
     updatedAt = json['updated_at'];
     typeId = json['type_id'];
   }
-
-  
 }

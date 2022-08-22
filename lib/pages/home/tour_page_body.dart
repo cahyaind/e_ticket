@@ -1,4 +1,8 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:e_ticket/controllers/popular_object_controller.dart';
+import 'package:e_ticket/controllers/popular_product_controller.dart';
+import 'package:e_ticket/models/products_model.dart';
+import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/app_column.dart';
@@ -6,6 +10,7 @@ import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/icon_and_text_widget.dart';
 import 'package:e_ticket/widgets/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class TourPageBody extends StatefulWidget {
   const TourPageBody({Key? key}) : super(key: key);
@@ -46,32 +51,38 @@ class _TourPageBodyState extends State<TourPageBody> {
     return Column(
       children: [
         // section for slider image n desc
-        Container(
-          height: Dimensions.pageView,
-          child: PageView.builder(
-            controller: pageController,
-            itemCount: 5,
-            itemBuilder: (context, position) {
-              return _buildPageItem(position);
-            },
-          ),
-        ),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return Container(
+            height: Dimensions.pageView,
+            child: PageView.builder(
+                controller: pageController,
+                itemCount: popularProducts.popularProductList.length,
+                itemBuilder: (context, position) {
+                  return _buildPageItem(
+                      position, popularProducts.popularProductList[position]);
+                }),
+          );
+        }),
 
         // dotsIndicator
-        DotsIndicator(
-          dotsCount: 5,
-          position: _currPageValue,
-          decorator: DotsDecorator(
-            activeColor: AppColors.mainColor,
-            size: const Size.square(9.0),
-            activeSize: const Size(18.0, 9.0),
-            activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+        GetBuilder<PopularProductController>(builder: (popularProducts) {
+          return DotsIndicator(
+            dotsCount: popularProducts.popularProductList.length <= 0
+                ? 1
+                : popularProducts.popularProductList.length,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
-          ),
-        ),
+          );
+        }),
 
-        // title Popular text
+        // title Popular Text
         SizedBox(height: Dimensions.height30),
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
@@ -93,7 +104,7 @@ class _TourPageBodyState extends State<TourPageBody> {
           ),
         ),
 
-        // list of tour n images
+        // LIST OF TOUR N IMAGES
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
@@ -178,7 +189,7 @@ class _TourPageBodyState extends State<TourPageBody> {
     );
   }
 
-  Widget _buildPageItem(int index) {
+  Widget _buildPageItem(int index, ProductModel popularProduct) {
     Matrix4 matrix = new Matrix4.identity();
     if (index == _currPageValue.floor()) {
       // left
@@ -220,10 +231,12 @@ class _TourPageBodyState extends State<TourPageBody> {
                 left: Dimensions.width10, right: Dimensions.width10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: index.isEven ? Color(0xff69c5df) : Color(0xff9294cc),
-              image: const DecorationImage(
+              color: index.isEven ? const Color(0xff69c5df) : Color(0xff9294cc),
+              image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('assets/image/tour1.jpg'),
+                image: NetworkImage(
+                  AppConstants.BASE_URL + "/uploads/" + popularProduct.img!,
+                ),
               ),
             ),
           ),
@@ -240,7 +253,7 @@ class _TourPageBodyState extends State<TourPageBody> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: Colors.white,
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       color: Color(0xff383838),
                       blurRadius: 5.0,
@@ -262,7 +275,9 @@ class _TourPageBodyState extends State<TourPageBody> {
                   left: 15,
                   right: 15,
                 ),
-                child: AppColumn(text: "Bukit Mercury",),
+                child: AppColumn(
+                  text: popularProduct.name!,
+                ),
               ),
             ),
           )
