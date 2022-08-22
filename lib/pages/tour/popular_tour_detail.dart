@@ -19,7 +19,8 @@ class PopularTourDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
 
     // di bawah ini yaitu untuk cek apakah datanya sudah ke Get
     // print("pageId is "+pageId.toString());
@@ -59,7 +60,38 @@ class PopularTourDetail extends StatelessWidget {
                     },
                     child: AppIcon(icon: Icons.arrow_back_ios),
                   ),
-                  AppIcon(icon: Icons.shopping_cart_outlined)
+                  GetBuilder<PopularProductController>(builder: (controller) {
+                    return Stack(
+                      children: [
+                        const AppIcon(icon: Icons.shopping_cart_outlined),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 0,
+                                top: 0,
+                                child: AppIcon(
+                                  icon: Icons.circle,
+                                  size: 20,
+                                  iconColor: Colors.transparent,
+                                  backgroundColor: AppColors.mainColor,
+                                ),
+                              )
+                            : Container(),
+                        Get.find<PopularProductController>().totalItems >= 1
+                            ? Positioned(
+                                right: 3,
+                                top: 3,
+                                child: BigText(
+                                  text: Get.find<PopularProductController>()
+                                      .totalItems
+                                      .toString(),
+                                  size: 12,
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Container()
+                      ],
+                    );
+                  })
                 ],
               ),
             ),
@@ -138,7 +170,8 @@ class PopularTourDetail extends StatelessWidget {
                           onTap: () {
                             popularProduct.setQuantity(false);
                           },
-                          child: Icon(Icons.remove, color: AppColors.signColor)),
+                          child:
+                              Icon(Icons.remove, color: AppColors.signColor)),
                       SizedBox(width: Dimensions.width10 / 2),
                       BigText(text: popularProduct.inCartItems.toString()),
                       SizedBox(width: Dimensions.width10 / 2),
@@ -152,20 +185,20 @@ class PopularTourDetail extends StatelessWidget {
                 ),
 
                 // button sebelah kanan TAMBAH KE KERANJANG
-                Container(
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height10,
-                      bottom: Dimensions.height10,
-                      left: Dimensions.width20,
-                      right: Dimensions.width20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: AppColors.mainColor,
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      popularProduct.addItem(product);
-                    },
+                GestureDetector(
+                  onTap: () {
+                    popularProduct.addItem(product);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        top: Dimensions.height10,
+                        bottom: Dimensions.height10,
+                        left: Dimensions.width20,
+                        right: Dimensions.width20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.mainColor,
+                    ),
                     child: BigText(
                         text: "\Rp${product.price!} | Add to cart",
                         color: Colors.white),

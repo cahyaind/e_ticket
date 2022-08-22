@@ -37,6 +37,7 @@ class PopularProductController extends GetxController {
     if (isIncrement) {
       // print("wow this is increment " + _quantity.toString());
       _quantity = checkQuantity(_quantity + 1);
+      print("nomor item "+ _quantity.toString());
     } else {
       _quantity = checkQuantity(_quantity - 1);
       // print("decrement terjadi " + _quantity.toString());
@@ -53,6 +54,10 @@ class PopularProductController extends GetxController {
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar(
@@ -75,26 +80,28 @@ class PopularProductController extends GetxController {
     exist = _cart.existInCart(product);
     // kalo ada
     // di get dari storage si _inCartItems ini
-    print("ada atau tidak " + exist.toString());
+    print("ada atau tidak $exist");
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }
-    print("kuantitas didalam keranjang " + _inCartItems.toString());
+    print("kuantitas didalam keranjang $_inCartItems");
   }
 
   void addItem(ProductModel product) {
     // jika kuantitas lebih besar (ada) daripada nol, maka eksekusi tambah item produk dg kuantitas ke _cart
     // if (_quantity > 0) {
-      _cart.addItem(product, quantity);
+    _cart.addItem(product, quantity);
 
-      _quantity = 0;
-      _inCartItems = _cart.getQuantity(product);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
 
-      _cart.items.forEach((key, value) {
-        print("Id-nya yaitu " + value.id.toString()+ " Dengan kuantitasnya " + value.quantity.toString());
-      });
-    // } else {
-    //   
-    // }
+    _cart.items.forEach((key, value) {
+      print("Id-nya yaitu ${value.id} Dengan kuantitasnya ${value.quantity}");
+    });
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
   }
 }
