@@ -2,8 +2,8 @@ class Object {
   int? _totalSize;
   int? _typeId;
   int? _offset;
-  late List<ObjectModel>? _objects;
-  List<ObjectModel>? get objects => _objects;
+  late List<ObjectModel> _objects;
+  List<ObjectModel> get objects => _objects;
 
   Object(
       {required totalSize,
