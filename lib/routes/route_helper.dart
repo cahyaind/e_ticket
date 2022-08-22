@@ -10,26 +10,34 @@ class RouteHelper {
 
   static String getInitial() => '$initial';
   static String getPopularTour(int pageId) => '$popularTour?pageId=$pageId';
-  static String getRecommendedTour(int pageId) => '$recommendedTour?pageId=$pageId';
+  static String getRecommendedTour(int pageId) =>
+      '$recommendedTour?pageId=$pageId';
 
   static List<GetPage> routes = [
     GetPage(name: initial, page: () => const MainTourPage()),
 
     // FOR POPULAR TOUR
-    GetPage(name: popularTour, page: () {
-      // print("popular tour detail get called"); // ini buat cek apakah function-nya berjalan mulus atau tidak
-      var pageId = Get.parameters['pageId']; // helperFunction yg digunakan utk mengGet parameter
-      return PopularTourDetail(pageId: int.parse(pageId!),);
-    },
-      transition: Transition.fadeIn
-    ),
+    GetPage(
+        name: popularTour,
+        page: () {
+          // print("popular tour detail get called"); // ini buat cek apakah function-nya berjalan mulus atau tidak
+          var pageId = Get.parameters[
+              'pageId']; // helperFunction yg digunakan utk mengGet parameter
+          return PopularTourDetail(
+            pageId: int.parse(pageId!),
+          );
+        },
+        transition: Transition.fadeIn),
 
     // FOR RECOMMENDED TOUR
-    GetPage(name: recommendedTour, page: () {
-      var pageId = Get.parameters['pageId'];
-      return RecommendedTourDetail(pageId: int.parse(pageId!),);
-    },
-      transition: Transition.fadeIn
-    ),
+    GetPage(
+        name: recommendedTour,
+        page: () {
+          var pageId = Get.parameters['pageId'];
+          return RecommendedTourDetail(
+            pageId: int.parse(pageId!),
+          );
+        },
+        transition: Transition.fadeIn),
   ];
 }

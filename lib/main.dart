@@ -1,3 +1,4 @@
+import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';

@@ -1,6 +1,8 @@
+import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
 import 'package:e_ticket/data/api/api_client.dart';
+import 'package:e_ticket/data/repository/cart_repo.dart';
 import 'package:e_ticket/data/repository/popular_product_repo.dart';
 import 'package:e_ticket/data/repository/recommended_product_repo.dart';
 import 'package:e_ticket/utils/app_constants.dart';
@@ -14,9 +16,11 @@ Future<void> init() async {
   // mengGET repository
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   Get.lazyPut(() => RecommendedProductRepo(apiClient: Get.find()));
+  Get.lazyPut(() => CartRepo());
 
   // mengGET controllers
   Get.lazyPut(() => PopularProductController(popularProductRepo: Get.find()));
   Get.lazyPut(() => RecommendedProductController(recommendedProductRepo: Get.find()));
+  Get.lazyPut(() => CartController(cartRepo: Get.find()));
 
 }

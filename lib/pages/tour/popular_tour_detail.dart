@@ -1,3 +1,4 @@
+import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/utils/app_constants.dart';
@@ -18,7 +19,7 @@ class PopularTourDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
 
     // di bawah ini yaitu untuk cek apakah datanya sudah ke Get
     // print("pageId is "+pageId.toString());
@@ -161,9 +162,14 @@ class PopularTourDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,
                   ),
-                  child: BigText(
-                      text: "\Rp${product.price!} | Add to cart",
-                      color: Colors.white),
+                  child: GestureDetector(
+                    onTap: () {
+                      popularProduct.addItem(product);
+                    },
+                    child: BigText(
+                        text: "\Rp${product.price!} | Add to cart",
+                        color: Colors.white),
+                  ),
                 ),
               ],
             ),
