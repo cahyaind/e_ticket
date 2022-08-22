@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
     
     Get.find<PopularProductController>().getPopularProductList();
     Get.find<RecommendedProductController>().getRecommendedProductList();
+    Get.find<CartController>();
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

@@ -19,7 +19,7 @@ class PopularTourDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
 
     // di bawah ini yaitu untuk cek apakah datanya sudah ke Get
     // print("pageId is "+pageId.toString());
@@ -140,7 +140,7 @@ class PopularTourDetail extends StatelessWidget {
                           },
                           child: Icon(Icons.remove, color: AppColors.signColor)),
                       SizedBox(width: Dimensions.width10 / 2),
-                      BigText(text: popularProduct.quantity.toString()),
+                      BigText(text: popularProduct.inCartItems.toString()),
                       SizedBox(width: Dimensions.width10 / 2),
                       GestureDetector(
                           onTap: () {
