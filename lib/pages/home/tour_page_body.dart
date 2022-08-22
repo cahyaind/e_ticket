@@ -123,85 +123,90 @@ class _TourPageBodyState extends State<TourPageBody> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: recommendedProduct.recommendedProductList.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                          left: Dimensions.width20,
-                          right: Dimensions.width20,
-                          bottom: Dimensions.height10),
-                      child: Row(
-                        children: [
-                          // image section in recomendation
-                          Container(
-                            width: Dimensions.listViewImgSize,
-                            height: Dimensions.listViewImgSize,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius20),
-                              color: Colors.white38,
-                              image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(AppConstants.BASE_URL +
-                                      AppConstants.UPLOAD_URL +
-                                      recommendedProduct
-                                          .recommendedProductList[index].img!)),
-                            ),
-                          ),
-
-                          // for text container
-                          Expanded(
-                            child: Container(
-                              height: Dimensions.listViewTextContSize,
+                    return GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getRecommendedTour());
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            left: Dimensions.width20,
+                            right: Dimensions.width20,
+                            bottom: Dimensions.height10),
+                        child: Row(
+                          children: [
+                            // image section in recomendation
+                            Container(
+                              width: Dimensions.listViewImgSize,
+                              height: Dimensions.listViewImgSize,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topRight:
-                                      Radius.circular(Dimensions.radius20),
-                                  bottomRight:
-                                      Radius.circular(Dimensions.radius20),
-                                ),
-                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.circular(Dimensions.radius20),
+                                color: Colors.white38,
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(AppConstants.BASE_URL +
+                                        AppConstants.UPLOAD_URL +
+                                        recommendedProduct
+                                            .recommendedProductList[index].img!)),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: Dimensions.width10,
-                                    right: Dimensions.width10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    // ! = to tell it that's not null, kita mengambil datanya hanya tentu jika itu tidak null yg berarti ada datanya
-                                    BigText(text: recommendedProduct.recommendedProductList[index].name!), 
-                                    SizedBox(height: Dimensions.height10),
-                                    SmallText(
-                                        text:
-                                            "Wisata yang ada di kaki gunung Ciremai"),
-                                    SizedBox(height: Dimensions.height10),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        IconAndTextWidget(
-                                          icon: Icons.circle_sharp,
-                                          text: "Normal",
-                                          iconColor: AppColors.iconColor1,
-                                        ),
-                                        IconAndTextWidget(
-                                          icon: Icons.location_on,
-                                          text: "2.7km",
-                                          iconColor: AppColors.mainColor,
-                                        ),
-                                        IconAndTextWidget(
-                                          icon: Icons.access_time_rounded,
-                                          text: "40min",
-                                          iconColor: AppColors.iconColor2,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                            ),
+                    
+                            // for text container
+                            Expanded(
+                              child: Container(
+                                height: Dimensions.listViewTextContSize,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight:
+                                        Radius.circular(Dimensions.radius20),
+                                    bottomRight:
+                                        Radius.circular(Dimensions.radius20),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: Dimensions.width10,
+                                      right: Dimensions.width10),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      // ! = to tell it that's not null, kita mengambil datanya hanya tentu jika itu tidak null yg berarti ada datanya
+                                      BigText(text: recommendedProduct.recommendedProductList[index].name!), 
+                                      SizedBox(height: Dimensions.height10),
+                                      SmallText(
+                                          text:
+                                              "Wisata yang ada di kaki gunung Ciremai"),
+                                      SizedBox(height: Dimensions.height10),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          IconAndTextWidget(
+                                            icon: Icons.circle_sharp,
+                                            text: "Normal",
+                                            iconColor: AppColors.iconColor1,
+                                          ),
+                                          IconAndTextWidget(
+                                            icon: Icons.location_on,
+                                            text: "2.7km",
+                                            iconColor: AppColors.mainColor,
+                                          ),
+                                          IconAndTextWidget(
+                                            icon: Icons.access_time_rounded,
+                                            text: "40min",
+                                            iconColor: AppColors.iconColor2,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
