@@ -1,4 +1,6 @@
+import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';
+import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/app_column.dart';
@@ -9,10 +11,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PopularTourDetail extends StatelessWidget {
-  const PopularTourDetail({Key? key}) : super(key: key);
+  int pageId;
+  PopularTourDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    // di bawah ini yaitu untuk cek apakah datanya sudah ke Get
+    // print("pageId is "+pageId.toString());
+    // print("product name is "+product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -24,10 +32,10 @@ class PopularTourDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularTourImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage("assets/image/tour0.jpg"),
+                  image: NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!),
                 ),
               ),
             ),
@@ -42,7 +50,7 @@ class PopularTourDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.to(()=>MainTourPage());
+                    Get.to(() => MainTourPage());
                   },
                   child: AppIcon(icon: Icons.arrow_back_ios),
                 ),
@@ -72,16 +80,13 @@ class PopularTourDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppColumn(text: "Bukit Mercury"),
+                  AppColumn(text: product.name),
                   SizedBox(height: Dimensions.width20),
                   BigText(text: "Description"),
                   SizedBox(height: Dimensions.width20),
-                  const Expanded(
+                  Expanded(
                     child: SingleChildScrollView(
-                      child: ExpandableTextWidget(
-                        text:
-                            "Bukit Mercury Sayang Kaak menjadi obyek wisata baru di Majalengka yang rekomended untuk mengisi waktu libur anda. Menawarkan keindahan panorama yang di lengkapi dengan berbagai macam spot foto instagenic, Bukit Mercury Sayang Kaak akan memanjakan liburan anda. Majalengka Jawa Barat memang menjadi salah satu kota yang menyajikan wisata alam yang layak untuk anda kunjungi ketika berlibur. Nikmati waktu libur akhir pekan anda dan keluarga yang menyenangkan di Majalengka dengan mengunjungi Bukit Mercury Sayang Kaak.Obyek wisata alam Bukit Mercury Sayang Kaak berada di ketinggian sekitar 1600 mdpl, sehingga udara segar dengan pemandangan alam yang indah akan mendamaikan jiwa anda. Refresh kepenatan jiwa, jenuh dengan suasana perkotaan, bosan di rumah saja dengan menikmati sajian wisata Bukit Mercury Sayang Kaak Majalengka.",
-                      ),
+                      child: ExpandableTextWidget(text: product.description),
                     ),
                   ),
                 ],
@@ -138,7 +143,7 @@ class PopularTourDetail extends StatelessWidget {
                   bottom: Dimensions.height10,
                   left: Dimensions.width20,
                   right: Dimensions.width20),
-              child: BigText(text: "\$10 | Add to cart", color: Colors.white),
+              child: BigText(text: "\Rp${product.price!} | Add to cart", color: Colors.white),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,

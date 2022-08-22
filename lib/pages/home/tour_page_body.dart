@@ -2,7 +2,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
 import 'package:e_ticket/models/products_model.dart';
-import 'package:e_ticket/pages/tour/popular_tour_detail.dart';
 import 'package:e_ticket/routes/route_helper.dart';
 import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
@@ -57,18 +56,13 @@ class _TourPageBodyState extends State<TourPageBody> {
           return popularProducts.isLoaded
               ? Container(
                   height: Dimensions.pageView,
-                  child: GestureDetector(
-                    onTap: () {
-                      Get.toNamed(RouteHelper.getPopularTour());
-                    },
-                    child: PageView.builder(
-                        controller: pageController,
-                        itemCount: popularProducts.popularProductList.length,
-                        itemBuilder: (context, position) {
-                          return _buildPageItem(position,
-                              popularProducts.popularProductList[position]);
-                        }),
-                  ),
+                  child: PageView.builder(
+                      controller: pageController,
+                      itemCount: popularProducts.popularProductList.length,
+                      itemBuilder: (context, position) {
+                        return _buildPageItem(position,
+                            popularProducts.popularProductList[position]);
+                      }),
                 )
               : CircularProgressIndicator(
                   color: AppColors.mainColor,
@@ -147,10 +141,11 @@ class _TourPageBodyState extends State<TourPageBody> {
                                     image: NetworkImage(AppConstants.BASE_URL +
                                         AppConstants.UPLOAD_URL +
                                         recommendedProduct
-                                            .recommendedProductList[index].img!)),
+                                            .recommendedProductList[index]
+                                            .img!)),
                               ),
                             ),
-                    
+
                             // for text container
                             Expanded(
                               child: Container(
@@ -169,11 +164,15 @@ class _TourPageBodyState extends State<TourPageBody> {
                                       left: Dimensions.width10,
                                       right: Dimensions.width10),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       // ! = to tell it that's not null, kita mengambil datanya hanya tentu jika itu tidak null yg berarti ada datanya
-                                      BigText(text: recommendedProduct.recommendedProductList[index].name!), 
+                                      BigText(
+                                          text: recommendedProduct
+                                              .recommendedProductList[index]
+                                              .name!),
                                       SizedBox(height: Dimensions.height10),
                                       SmallText(
                                           text:
@@ -254,20 +253,26 @@ class _TourPageBodyState extends State<TourPageBody> {
       child: Stack(
         children: [
           // untuk image
-          Container(
-            // height: 220,
-            height: Dimensions.pageViewContainer,
-            margin: EdgeInsets.only(
-                left: Dimensions.width10, right: Dimensions.width10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimensions.radius30),
-              color: index.isEven ? const Color(0xff69c5df) : Color(0xff9294cc),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: NetworkImage(
-                  AppConstants.BASE_URL +
-                      AppConstants.UPLOAD_URL +
-                      popularProduct.img!,
+          GestureDetector(
+            onTap: () {
+
+              Get.toNamed(RouteHelper.getPopularTour(index));
+            },
+            child: Container(
+              // height: 220,
+              height: Dimensions.pageViewContainer,
+              margin: EdgeInsets.only(
+                  left: Dimensions.width10, right: Dimensions.width10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius30),
+                color: index.isEven ? const Color(0xff69c5df) : Color(0xff9294cc),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                    AppConstants.BASE_URL +
+                        AppConstants.UPLOAD_URL +
+                        popularProduct.img!,
+                  ),
                 ),
               ),
             ),

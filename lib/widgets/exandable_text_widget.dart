@@ -1,10 +1,7 @@
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/small_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ExpandableTextWidget extends StatefulWidget {
   final String text;
@@ -56,7 +53,7 @@ class ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                   color: AppColors.paraColor,
                   size: Dimensions.font16,
                   text: hiddenText
-                      ? (firstHalf + "...")
+                      ? ("$firstHalf...")
                       : (firstHalf + secondHalf),
                 ),
                 InkWell(

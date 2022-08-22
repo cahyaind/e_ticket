@@ -23,7 +23,7 @@ class Object {
     if (json['objects'] != null) {
       _objects = <ObjectModel>[];
       json['objects'].forEach((v) {
-        _objects!.add(ObjectModel.fromJson(v));
+        _objects.add(ObjectModel.fromJson(v));
       });
     }
   }

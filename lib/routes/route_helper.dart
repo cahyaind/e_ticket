@@ -9,7 +9,7 @@ class RouteHelper {
   static const String recommendedTour = "/recommended-tour";
 
   static String getInitial() => '$initial';
-  static String getPopularTour() => '$popularTour';
+  static String getPopularTour(int pageId) => '$popularTour?pageId=$pageId';
   static String getRecommendedTour() => '$recommendedTour';
 
   static List<GetPage> routes = [
@@ -17,8 +17,9 @@ class RouteHelper {
 
     // FOR POPULAR TOUR
     GetPage(name: popularTour, page: () {
-      // print("popular tour detail get called");
-      return PopularTourDetail();
+      // print("popular tour detail get called"); // ini buat cek apakah function-nya berjalan mulus atau tidak
+      var pageId = Get.parameters['pageId']; // helperFunction yg digunakan utk mengGet parameter
+      return PopularTourDetail(pageId: int.parse(pageId!),);
     },
       transition: Transition.fadeIn
     ),

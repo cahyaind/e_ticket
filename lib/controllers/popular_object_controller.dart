@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:e_ticket/data/repository/popular_object_repo.dart';
-import 'package:e_ticket/models/objects_model.dart';
 import 'package:get/get.dart';
 
 class PopularObjectController extends GetxController {
