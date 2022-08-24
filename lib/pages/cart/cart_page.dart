@@ -247,7 +247,13 @@ class CartPage extends StatelessWidget {
                     children: [
                       
                       SizedBox(width: Dimensions.width10 / 2),
-                      BigText(text: "\Rp" + cartController.totalAmount.toString()),
+                      // before use interpolation
+                      // BigText(text: "\Rp" + cartController.totalAmount.toString()),
+                      // after use interpolation
+                      BigText(text: "\Rp${cartController.totalAmount}"),
+                      // Dalam bidang matematika analisis numeris, interpolasi adalah 
+                      // metode menghasilkan titik-titik data baru dalam suatu jangkauan
+                      // dari suatu set diskret data-data yang diketahui.
                       SizedBox(width: Dimensions.width10 / 2),
                       
                     ],

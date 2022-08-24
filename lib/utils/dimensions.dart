@@ -47,4 +47,7 @@ class Dimensions {
 
   // ketinggian bar bawah
   static double bottomHeightBar = screenHeight/7.03;
+
+  // untuk splashScreen
+  static double splashImg = screenHeight/3.38;
 }

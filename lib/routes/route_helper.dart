@@ -1,15 +1,19 @@
 import 'package:e_ticket/pages/cart/cart_page.dart';
+import 'package:e_ticket/pages/home/home_page.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';
+import 'package:e_ticket/pages/splash/splash_page.dart';
 import 'package:e_ticket/pages/tour/popular_tour_detail.dart';
 import 'package:e_ticket/pages/tour/recommended_tour_detail.dart';
 import 'package:get/get.dart';
 
 class RouteHelper {
+  static const String splashPage = "/splash-page";
   static const String initial = "/";
   static const String popularTour = "/popular-tour";
   static const String recommendedTour = "/recommended-tour";
   static const String cartPage = "/cart-page";
 
+  static String getSplashPage() => '$splashPage';
   static String getInitial() => '$initial';
   static String getPopularTour(int pageId, String page) =>
       '$popularTour?pageId=$pageId&page=$page';
@@ -18,7 +22,10 @@ class RouteHelper {
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => const MainTourPage()),
+
+    GetPage(name: splashPage, page: () => SplashScreen()),
+
+    GetPage(name: initial, page: () => const HomePage()),
 
     // FOR POPULAR TOUR
     GetPage(
@@ -44,6 +51,7 @@ class RouteHelper {
       transition: Transition.fadeIn,
     ),
 
+    // FOT CART
     GetPage(
       name: cartPage,
       page: () {

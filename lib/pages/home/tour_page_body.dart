@@ -45,6 +45,7 @@ class _TourPageBodyState extends State<TourPageBody> {
   @override
   void dispose() {
     pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -265,7 +266,7 @@ class _TourPageBodyState extends State<TourPageBody> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimensions.radius30),
                 color:
-                    index.isEven ? const Color(0xff69c5df) : Color(0xff9294cc),
+                    index.isEven ? const Color(0xff69c5df) : const Color(0xff9294cc),
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(

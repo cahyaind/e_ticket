@@ -1,6 +1,5 @@
 import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
-import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/routes/route_helper.dart';
 import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
