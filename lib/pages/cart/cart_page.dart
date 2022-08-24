@@ -87,7 +87,8 @@ class CartPage extends StatelessWidget {
                                           .popularProductList
                                           .indexOf(_cartList[index].product!);
                                   if (popularIndex >= 0) {
-                                    Get.toNamed(RouteHelper.getPopularTour(popularIndex, "cartpage"));
+                                    Get.toNamed(RouteHelper.getPopularTour(
+                                        popularIndex, "cartpage"));
                                   } else {
                                     var recommendedIndex =
                                         Get.find<RecommendedProductController>()
@@ -210,6 +211,72 @@ class CartPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: GetBuilder<CartController>(
+        builder: (cartController) {
+          return Container(
+            // height: 120,
+            height: Dimensions.bottomHeightBar,
+            padding: EdgeInsets.only(
+              top: Dimensions.height30,
+              bottom: Dimensions.width30,
+              left: Dimensions.width20,
+              right: Dimensions.width20,
+            ),
+            decoration: BoxDecoration(
+                color: AppColors.buttonBackgroundColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Dimensions.radius20 * 2),
+                  topRight: Radius.circular(Dimensions.radius20 * 2),
+                )),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // button sebelah kiri
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height10,
+                      bottom: Dimensions.height10,
+                      left: Dimensions.width20,
+                      right: Dimensions.width20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white,
+                  ),
+                  child: Row(
+                    children: [
+                      
+                      SizedBox(width: Dimensions.width10 / 2),
+                      BigText(text: "\Rp"cartController.totalAmount.toString()),
+                      SizedBox(width: Dimensions.width10 / 2),
+                      
+                    ],
+                  ),
+                ),
+
+                // button sebelah kanan TAMBAH KE KERANJANG
+                GestureDetector(
+                  onTap: () {
+                    // popularProduct.addItem(product);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.only(
+                        top: Dimensions.height10,
+                        bottom: Dimensions.height10,
+                        left: Dimensions.width20,
+                        right: Dimensions.width20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.mainColor,
+                    ),
+                    child:
+                        BigText(text: "Bayar Sekarang", color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
