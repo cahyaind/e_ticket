@@ -1,3 +1,4 @@
+import 'package:e_ticket/pages/cart/cart_history.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,10 +19,10 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainTourPage(),
-      Container(child: Center(child: Text("Selanjutnya"))),
-      Container(child: Center(child: Text("Selanjutnya selanjutnya"))),
-      Container(
-          child: Center(child: Text("Selanjutnya selanjutnya selanjutnya"))),
+    Container(child: Center(child: Text("Selanjutnya"))),
+    CartHistory(),
+    Container(
+        child: Center(child: Text("Selanjutnya selanjutnya selanjutnya"))),
   ];
 
   void onTapNav(int index) {
@@ -147,6 +148,4 @@ class _HomePageState extends State<HomePage> {
   //         NavBarStyle.style1, // Choose the nav bar style with this property.
   //   );
   // }
-
-
 }

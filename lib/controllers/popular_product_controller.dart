@@ -81,11 +81,11 @@ class PopularProductController extends GetxController {
     exist = _cart.existInCart(product);
     // kalo ada
     // di get dari storage si _inCartItems ini
-    print("ada atau tidak $exist");
+    // print("ada atau tidak $exist");
     if (exist) {
       _inCartItems = _cart.getQuantity(product);
     }
-    print("kuantitas didalam keranjang $_inCartItems");
+    // print("kuantitas didalam keranjang $_inCartItems");
   }
 
   void addItem(ProductModel product) {

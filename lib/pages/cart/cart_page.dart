@@ -1,7 +1,6 @@
 import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
-import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/routes/route_helper.dart';
 import 'package:e_ticket/utils/app_constants.dart';
 import 'package:e_ticket/utils/colors.dart';
@@ -264,6 +263,8 @@ class CartPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     // popularProduct.addItem(product);
+                    print("terklik");
+                    cartController.addToHistory();
                   },
                   child: Container(
                     padding: EdgeInsets.only(
@@ -276,7 +277,7 @@ class CartPage extends StatelessWidget {
                       color: AppColors.mainColor,
                     ),
                     child:
-                        BigText(text: "Bayar Sekarang", color: Colors.white),
+                        BigText(text: "Checkout", color: Colors.white),
                   ),
                 ),
               ],
