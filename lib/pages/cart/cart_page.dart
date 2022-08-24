@@ -1,3 +1,4 @@
+import 'package:e_ticket/base/no_data_page.dart';
 import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
@@ -56,159 +57,194 @@ class CartPage extends StatelessWidget {
           ),
 
           // VALUE DI DALAM CART PAGE
-          Positioned(
-            top: Dimensions.height20 * 5,
-            left: Dimensions.width20,
-            right: Dimensions.width20,
-            bottom: 0,
-            child: Container(
-              margin: EdgeInsets.only(top: Dimensions.height15),
-              // color: Colors.blue,
-              child: MediaQuery.removePadding(
-                context: context,
-                removeTop: true,
-                child: GetBuilder<CartController>(builder: (cartController) {
-                  var _cartList = cartController.getItems;
-                  return ListView.builder(
-                      itemCount: _cartList.length,
-                      itemBuilder: (_, index) {
-                        return Container(
-                          width: double.maxFinite,
-                          height: Dimensions.height20 * 5,
-                          child: Row(
-                            children: [
-                              // GENERATE LEFT -> IMAGE
-                              GestureDetector(
-                                onTap: () {
-                                  // popular list di passing ke objek berdasarkan index menggunakan baris perintah di bawah ini
-                                  var popularIndex =
-                                      Get.find<PopularProductController>()
-                                          .popularProductList
-                                          .indexOf(_cartList[index].product!);
-                                  if (popularIndex >= 0) {
-                                    Get.toNamed(RouteHelper.getPopularTour(
-                                        popularIndex, "cartpage"));
-                                  } else {
-                                    var recommendedIndex =
-                                        Get.find<RecommendedProductController>()
-                                            .recommendedProductList
-                                            .indexOf(_cartList[index].product!);
-                                    Get.toNamed(RouteHelper.getRecommendedTour(
-                                        recommendedIndex, "cartpage"));
-                                  }
-                                },
-                                child: Container(
-                                  width: Dimensions.height20 * 5,
+          GetBuilder<CartController>(builder: (_cartController) {
+            return _cartController.getItems.length > 0
+                ? Positioned(
+                    top: Dimensions.height20 * 5,
+                    left: Dimensions.width20,
+                    right: Dimensions.width20,
+                    bottom: 0,
+                    child: Container(
+                      margin: EdgeInsets.only(top: Dimensions.height15),
+                      // color: Colors.blue,
+                      child: MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        child: GetBuilder<CartController>(
+                            builder: (cartController) {
+                          var _cartList = cartController.getItems;
+                          return ListView.builder(
+                              itemCount: _cartList.length,
+                              itemBuilder: (_, index) {
+                                return Container(
+                                  width: double.maxFinite,
                                   height: Dimensions.height20 * 5,
-                                  margin: EdgeInsets.only(
-                                      bottom: Dimensions.height10),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(AppConstants
-                                              .BASE_URL +
-                                          AppConstants.UPLOAD_URL +
-                                          cartController.getItems[index].img!),
-                                    ),
-                                    borderRadius: BorderRadius.circular(
-                                        Dimensions.radius20),
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: Dimensions.width10),
-
-                              // GENERATE RIGHT -> KETERANGAN
-                              Expanded(
-                                  child: Container(
-                                height: Dimensions.height20 * 5,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    BigText(
-                                      text:
-                                          cartController.getItems[index].name!,
-                                      color: Colors.black54,
-                                    ),
-                                    SmallText(text: "hello world"),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        BigText(
-                                          text: cartController
-                                              .getItems[index].price
-                                              .toString(),
-                                          color: Colors.blueAccent,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                            top: Dimensions.height10,
-                                            bottom: Dimensions.height10,
-                                            left: Dimensions.width10,
-                                            right: Dimensions.width10,
-                                          ),
+                                  child: Row(
+                                    children: [
+                                      // GENERATE LEFT -> IMAGE
+                                      GestureDetector(
+                                        onTap: () {
+                                          // popular list di passing ke objek berdasarkan index menggunakan baris perintah di bawah ini
+                                          var popularIndex = Get.find<
+                                                  PopularProductController>()
+                                              .popularProductList
+                                              .indexOf(
+                                                  _cartList[index].product!);
+                                          if (popularIndex >= 0) {
+                                            Get.toNamed(
+                                                RouteHelper.getPopularTour(
+                                                    popularIndex, "cartpage"));
+                                          } else {
+                                            var recommendedIndex = Get.find<
+                                                    RecommendedProductController>()
+                                                .recommendedProductList
+                                                .indexOf(
+                                                    _cartList[index].product!);
+                                            if (recommendedIndex < 0) {
+                                              Get.snackbar(
+                                                "Riwayat Items",
+                                                "Tidak tersedia",
+                                                backgroundColor:
+                                                    AppColors.mainColor,
+                                                colorText: Colors.white,
+                                              );
+                                            } else {
+                                              Get.toNamed(RouteHelper
+                                                  .getRecommendedTour(
+                                                      recommendedIndex,
+                                                      "cartpage"));
+                                            }
+                                          }
+                                        },
+                                        child: Container(
+                                          width: Dimensions.height20 * 5,
+                                          height: Dimensions.height20 * 5,
+                                          margin: EdgeInsets.only(
+                                              bottom: Dimensions.height10),
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              Dimensions.radius20,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                  AppConstants.BASE_URL +
+                                                      AppConstants.UPLOAD_URL +
+                                                      cartController
+                                                          .getItems[index]
+                                                          .img!),
                                             ),
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.radius20),
                                             color: Colors.white,
                                           ),
-                                          child: Row(
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () {
-                                                  // popularProduct.setQuantity(true);
-                                                  cartController.addItem(
-                                                      _cartList[index].product!,
-                                                      -1);
-                                                },
-                                                child: Icon(
-                                                  Icons.remove,
-                                                  color: AppColors.signColor,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  width:
-                                                      Dimensions.width10 / 2),
-                                              BigText(
-                                                  text: _cartList[index]
-                                                      .quantity
-                                                      .toString()),
-                                              SizedBox(
-                                                  width:
-                                                      Dimensions.width10 / 2),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  // popularProduct.setQuantity(true);
-                                                  cartController.addItem(
-                                                      _cartList[index].product!,
-                                                      1);
-                                                  print("1");
-                                                },
-                                                child: Icon(
-                                                  Icons.add,
-                                                  color: AppColors.signColor,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
                                         ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ))
-                            ],
-                          ),
-                        );
-                      });
-                }),
-              ),
-            ),
-          ),
+                                      ),
+                                      SizedBox(width: Dimensions.width10),
+
+                                      // GENERATE RIGHT -> KETERANGAN
+                                      Expanded(
+                                          child: Container(
+                                        height: Dimensions.height20 * 5,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            BigText(
+                                              text: cartController
+                                                  .getItems[index].name!,
+                                              color: Colors.black54,
+                                            ),
+                                            SmallText(text: "hello world"),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                BigText(
+                                                  text: cartController
+                                                      .getItems[index].price
+                                                      .toString(),
+                                                  color: Colors.blueAccent,
+                                                ),
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                    top: Dimensions.height10,
+                                                    bottom: Dimensions.height10,
+                                                    left: Dimensions.width10,
+                                                    right: Dimensions.width10,
+                                                  ),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                      Dimensions.radius20,
+                                                    ),
+                                                    color: Colors.white,
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // popularProduct.setQuantity(true);
+                                                          cartController
+                                                              .addItem(
+                                                                  _cartList[
+                                                                          index]
+                                                                      .product!,
+                                                                  -1);
+                                                        },
+                                                        child: Icon(
+                                                          Icons.remove,
+                                                          color: AppColors
+                                                              .signColor,
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                          width: Dimensions
+                                                                  .width10 /
+                                                              2),
+                                                      BigText(
+                                                          text: _cartList[index]
+                                                              .quantity
+                                                              .toString()),
+                                                      SizedBox(
+                                                          width: Dimensions
+                                                                  .width10 /
+                                                              2),
+                                                      GestureDetector(
+                                                        onTap: () {
+                                                          // popularProduct.setQuantity(true);
+                                                          cartController
+                                                              .addItem(
+                                                                  _cartList[
+                                                                          index]
+                                                                      .product!,
+                                                                  1);
+                                                          print("1");
+                                                        },
+                                                        child: Icon(
+                                                          Icons.add,
+                                                          color: AppColors
+                                                              .signColor,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ))
+                                    ],
+                                  ),
+                                );
+                              });
+                        }),
+                      ),
+                    ),
+                  )
+                : NoDataPage(text: "Keranjangnya kosong :(");
+          })
         ],
       ),
       bottomNavigationBar: GetBuilder<CartController>(
@@ -223,65 +259,68 @@ class CartPage extends StatelessWidget {
               right: Dimensions.width20,
             ),
             decoration: BoxDecoration(
-                color: AppColors.buttonBackgroundColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(Dimensions.radius20 * 2),
-                  topRight: Radius.circular(Dimensions.radius20 * 2),
-                )),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // button sebelah kiri
-                Container(
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height10,
-                      bottom: Dimensions.height10,
-                      left: Dimensions.width20,
-                      right: Dimensions.width20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                    color: Colors.white,
-                  ),
-                  child: Row(
-                    children: [
-                      
-                      SizedBox(width: Dimensions.width10 / 2),
-                      // before use interpolation
-                      // BigText(text: "\Rp" + cartController.totalAmount.toString()),
-                      // after use interpolation
-                      BigText(text: "\Rp${cartController.totalAmount}"),
-                      // Dalam bidang matematika analisis numeris, interpolasi adalah 
-                      // metode menghasilkan titik-titik data baru dalam suatu jangkauan
-                      // dari suatu set diskret data-data yang diketahui.
-                      SizedBox(width: Dimensions.width10 / 2),
-                      
-                    ],
-                  ),
-                ),
-
-                // button sebelah kanan TAMBAH KE KERANJANG
-                GestureDetector(
-                  onTap: () {
-                    // popularProduct.addItem(product);
-                    print("terklik");
-                    cartController.addToHistory();
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(
-                        top: Dimensions.height10,
-                        bottom: Dimensions.height10,
-                        left: Dimensions.width20,
-                        right: Dimensions.width20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
-                      color: AppColors.mainColor,
-                    ),
-                    child:
-                        BigText(text: "Checkout", color: Colors.white),
-                  ),
-                ),
-              ],
+              color: AppColors.buttonBackgroundColor,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimensions.radius20 * 2),
+                topRight: Radius.circular(Dimensions.radius20 * 2),
+              ),
             ),
+
+            child: cartController.getItems.length > 0
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // button sebelah kiri
+                      Container(
+                        padding: EdgeInsets.only(
+                            top: Dimensions.height10,
+                            bottom: Dimensions.height10,
+                            left: Dimensions.width20,
+                            right: Dimensions.width20),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(width: Dimensions.width10 / 2),
+                            // before use interpolation
+                            // BigText(text: "\Rp" + cartController.totalAmount.toString()),
+                            // after use interpolation
+                            BigText(text: "\Rp${cartController.totalAmount}"),
+                            // Dalam bidang matematika analisis numeris, interpolasi adalah
+                            // metode menghasilkan titik-titik data baru dalam suatu jangkauan
+                            // dari suatu set diskret data-data yang diketahui.
+                            SizedBox(width: Dimensions.width10 / 2),
+                          ],
+                        ),
+                      ),
+
+                      // button sebelah kanan TAMBAH KE KERANJANG
+                      GestureDetector(
+                        onTap: () {
+                          // popularProduct.addItem(product);
+                          print("terklik");
+                          cartController.addToHistory();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              top: Dimensions.height10,
+                              bottom: Dimensions.height10,
+                              left: Dimensions.width20,
+                              right: Dimensions.width20),
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20),
+                            color: AppColors.mainColor,
+                          ),
+                          child: BigText(text: "Checkout", color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  )
+                : Container(),
           );
         },
       ),
