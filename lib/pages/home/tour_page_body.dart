@@ -119,7 +119,7 @@ class _TourPageBodyState extends State<TourPageBody> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedTour(index));
+                        Get.toNamed(RouteHelper.getRecommendedTour(index, "home"));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -255,7 +255,7 @@ class _TourPageBodyState extends State<TourPageBody> {
           // untuk image
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.getPopularTour(index));
+              Get.toNamed(RouteHelper.getPopularTour(index, "home"));
             },
             child: Container(
               // height: 220,

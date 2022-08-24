@@ -1,6 +1,7 @@
 import 'package:e_ticket/controllers/cart_controller.dart';
 import 'package:e_ticket/controllers/popular_product_controller.dart';
 import 'package:e_ticket/controllers/recommended_product_controller.dart';
+import 'package:e_ticket/pages/cart/cart_page.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/routes/route_helper.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       
-      home: const MainTourPage(),
+      home: MainTourPage(),
       initialRoute: RouteHelper.initial,
       getPages: RouteHelper.routes,
     );
