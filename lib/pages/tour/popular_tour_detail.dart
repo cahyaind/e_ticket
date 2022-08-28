@@ -26,6 +26,7 @@ class PopularTourDetail extends StatelessWidget {
     // di bawah ini yaitu untuk cek apakah datanya sudah ke Get
     // print("pageId is "+pageId.toString());
     // print("product name is "+product.name.toString());
+    print("url gambarnya "+product.img.toString());
     return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(

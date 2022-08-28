@@ -1,3 +1,5 @@
+import 'package:e_ticket/pages/account/account_page.dart';
+import 'package:e_ticket/pages/auth/sign_up_page.dart';
 import 'package:e_ticket/pages/cart/cart_history.dart';
 import 'package:e_ticket/pages/home/main_tour_page.dart';
 import 'package:e_ticket/utils/colors.dart';
@@ -19,10 +21,9 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     MainTourPage(),
-    Container(child: Center(child: Text("Selanjutnya"))),
     CartHistory(),
-    Container(
-        child: Center(child: Text("Selanjutnya selanjutnya selanjutnya"))),
+    SignUpPage(),
+    AccountPage(),
   ];
 
   void onTapNav(int index) {

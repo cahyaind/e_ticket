@@ -223,7 +223,7 @@ class CartHistory extends StatelessWidget {
                                                               .mainColor),
                                                     ),
                                                     child: SmallText(
-                                                      text: "satu lagi",
+                                                      text: "beli lagi",
                                                       color:
                                                           AppColors.mainColor,
                                                     ),

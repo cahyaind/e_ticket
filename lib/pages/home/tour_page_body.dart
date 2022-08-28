@@ -88,14 +88,14 @@ class _TourPageBodyState extends State<TourPageBody> {
           );
         }),
 
-        // title Popular Text
+        // title Rekomendasi Text
         SizedBox(height: Dimensions.height30),
         Container(
           margin: EdgeInsets.only(left: Dimensions.width30),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              BigText(text: "Recommended"),
+              BigText(text: "Rekomendasi"),
               SizedBox(width: Dimensions.width10),
               Container(
                 margin: const EdgeInsets.only(bottom: 3),

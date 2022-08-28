@@ -1,9 +1,12 @@
+import 'package:e_ticket/controllers/popular_product_controller.dart';
+import 'package:e_ticket/controllers/recommended_product_controller.dart';
 import 'package:e_ticket/pages/home/tour_page_body.dart';
 import 'package:e_ticket/utils/colors.dart';
 import 'package:e_ticket/utils/dimensions.dart';
 import 'package:e_ticket/widgets/big_text.dart';
 import 'package:e_ticket/widgets/small_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainTourPage extends StatefulWidget {
   const MainTourPage({Key? key}) : super(key: key);
@@ -13,11 +16,18 @@ class MainTourPage extends StatefulWidget {
 }
 
 class _MainTourPageState extends State<MainTourPage> {
+  Future<void> _loadResource() async {
+    await Get.find<PopularProductController>().getPopularProductList();
+    await Get.find<RecommendedProductController>().getRecommendedProductList();
+    // Get.find<CartController>();
+  }
+
   @override
   Widget build(BuildContext context) {
     // print("current height is "+MediaQuery.of(context).size.height.toString());
-    return Scaffold(
-      body: Column(
+    return RefreshIndicator(
+      onRefresh: _loadResource,
+      child: Column(
         children: [
           // the header
           Container(
@@ -34,7 +44,7 @@ class _MainTourPageState extends State<MainTourPage> {
                       BigText(text: "Indonesia", color: AppColors.mainColor),
                       Row(
                         children: [
-                          SmallText(text: "Bandung", color: Colors.black54),
+                          SmallText(text: "Indramayu", color: Colors.black54),
                           Icon(Icons.arrow_drop_down_rounded)
                         ],
                       ),
@@ -58,7 +68,7 @@ class _MainTourPageState extends State<MainTourPage> {
             ),
           ),
           // the body (top image)
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               child: TourPageBody(),
             ),
